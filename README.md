@@ -1,4 +1,4 @@
-# **ETH 2.0 Stock Prediction**
+# **Blockchain Advanced Analytics**
 
 ## **Overview**
 
