@@ -1,5 +1,13 @@
 <h1>Histogram Program Explanation</h1>
 
+## **Table of Contents**
+ * [Overview](#overview)
+ * [How to Run the Program](#how-to-run-the-program)
+ * [Explanation Of Program](#explanation-of-program)
+
+<h2> Overview </h2>
+The ```Histogram.py``` program creates a histogram of average inclusion distance, a measure of the amount of time an attestor in the blockchain gets his task and does the job for validators in the ETH 2.0 network.
+
 <h2> How to run the Program </h2>
 
 The file ```Histogram.py``` creates a histogram of the average inclusion distances of <i>n</i> randomly chosen validators and compares it to the average inclusion distance of a given validator index. 
