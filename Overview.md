@@ -1,6 +1,3 @@
-Main Page {#mainpage}
-=========
-
 # **ETH 2.0 Stock Prediction**
 
 ## **Overview**
