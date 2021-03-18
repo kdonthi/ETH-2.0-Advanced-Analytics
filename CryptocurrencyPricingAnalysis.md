@@ -1,9 +1,9 @@
 # **Cryptocurrency Pricing Analysis**
 
 ## **Table of Contents**
- * Introduction
- * How to Run the Program
- * Explanation
+ * [Introduction](#introduction)
+ * [How to Run the Program](#how-to-run-the-program)
+ * [Explanation](#explanation)
 
 ### **Introduction**
 This program tries to predict blockchain pricing data using past blockchain pricing data using three steps:
@@ -35,11 +35,12 @@ You can see the local minima and maxima for this data are out of control.
 
 I realized that I could reduce the amount of noise by reducing the actual amount of data present. But it wouldn’t have made sense to just remove data randomly, so I used a randomized algorithm called *OptimalSubsampleNew.py* in my “EvenlySpacedNumbers” folder to select evenly spaced numbers in each decreasing or increasing interval found in the 11 degree polynomial regression model and created a new dataset with the evenly spaced values spaced out at regular intervals. If you want to read more about my randomized algorithm, you can go to the README.md in my "EvenlySpacedNumbers” folder. 
 
-Two methods I used in my machine learning model were:
+Three methods I used in my machine learning model were:
 
 <ol>
-  <li> Shifting the data set so that it started at epoch 5000 and setting the epoch and avg price values such that the lowest epoch was 1 and y value was around 0 (the reason x is 1 is that I found that using log(x) was a really useful feature to decrease both training and testing error and you cannot take log(0)).
-  <li> Min-max normalization of the features - After finding the column of each features, I set each value to ```x_i - column.min / column.max - column.min``` to make sure that all the values for all of the features were in the same range of [0,1].
+  <li> Shifting the data set so that it started at epoch 5000 and setting the epoch and avg price values such that the lowest epoch was 1 and y value was around 0 (the reason x is 1 is that I found that using log(x) was a really useful feature to decrease both training and testing error and you cannot take log(0)). </li>
+  <li> Min-max normalization of the features - After finding the column of each features, I set each value to ```x_i - column.min / column.max - column.min``` to make sure that all the values for all of the features were in the same range of [0,1]. </li>
+  <li> Solving for the weight matrix directly without using gradient descent. Since I have only around 14 features, I decided to solve for the weight matrix that minimizes the cost function directly. dC/dW = xT*(xW - y) (and we set dC/dW to 0) ==> xTy = xTxW ==> (xTx)^-1xTy = W. Make sure you DO NOT include two of the same features when creating your feature matrix because this will cause the matrix to be singular/non-invertible.</li>
 </ol>
 
 If you are wondering why I didn't use a neural network instead, I did. It resulted in a more straight line of fit than my polynomial regression model when I created a 3 layer model. I have included the code in my file in a function called ```neuralNetwork``` to which you just pass in a X matrix containing all the features (X), the output vector (y), the number of units in your hidden layer (N), and the learning rate (alpha). I have found that alpha really only cooperates when it is set to 0.0001. If you don't really want to do any of this manually, I have included a variable called ```nnwpred``` which you can uncomment on line 173. You can replace ```pred``` with ```nnwpred``` on the next line to see the prediction and run ```plt.show()``` on the line after to see the prediction.
