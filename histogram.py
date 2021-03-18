@@ -117,8 +117,17 @@ def plotHistogram(chooseVal, validatorIndex, retryCall=5):
 def main(): #first argument is number of Validators and second argument is validator index
     begin = time.time()
     arglen = len(sys.argv)
-    assert(arglen == 3 or arglen == 4)
-    numberOfRandVals = int(sys.argv[1])
+    if (arglen < 3 or arglen > 4):
+        print("Your 1st parameter is the number of other validators you want to graph and the 2nd is the index of the validator you want to compare. The optional third parameter is the number of tries.")
+        exit()
+    try:
+        numberOfRandVals = int(sys.argv[1])
+        a = int(sys.argv[2])
+        if (arglen == 4):
+            b = int(sys.argv[3])
+    except Exception as e:
+        print("Make sure all your parameters are integers!")
+        exit()
     valIndex = sys.argv[2]
     if arglen == 4:
              call = int(sys.argv[3])
